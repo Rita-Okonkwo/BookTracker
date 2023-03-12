@@ -1,6 +1,6 @@
 # Book Tracking React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A book tracking application built using react. My first project in the Udacity React Nanodegree program
 
 ## Available Scripts
 
