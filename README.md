@@ -4,7 +4,11 @@ A book tracking application built using react. My first project in the Udacity R
 
 ## Available Scripts
 
-In the project directory, you can run:
+n the project directory, you can run this command to install the project dependencies:
+
+### `npm install`
+
+In the project directory, you can run this command to launch the project:
 
 ### `npm start`
 
