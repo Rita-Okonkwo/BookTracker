@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import BookShelf from "./BookShelf";
 import { getAll } from "./BooksAPI";
 
-function App() {
+const App = () => {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([])
 
