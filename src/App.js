@@ -1,11 +1,25 @@
 import "./App.css";
-import { useState } from "react";
-import CurrentRead from "./CurrentRead";
-import WantToRead from "./WantToRead";
-import Read from "./Read"
+import { useEffect, useState } from "react";
+import BookShelf from "./BookShelf";
+import { getAll } from "./BooksAPI";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
+  const [books, setBooks] = useState([])
+
+  useEffect((() => {
+    let ignore = false
+    const fetchBooks = async () => {
+      const res = await getAll()
+      if (!ignore) {
+        setBooks(res)
+      }  
+    }
+    fetchBooks()
+    return () => {
+      ignore = true
+    }
+  }), [])
 
   return (
     <div className="app">
@@ -36,9 +50,9 @@ function App() {
           </div>
           <div className="list-books-content">
             <div>
-              <CurrentRead/>
-              <WantToRead/>
-              <Read/>
+              <BookShelf books={books} shelf="currentlyReading" shelfName="Currently Reading"/>
+              <BookShelf books={books} shelf="wantToRead" shelfName="Want to Read"/>
+              <BookShelf books={books} shelf="read" shelfName="Read"/>
             </div>
           </div>
           <div className="open-search">
