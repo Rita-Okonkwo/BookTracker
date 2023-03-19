@@ -20,21 +20,17 @@ const BookShelf = ({books, shelf, shelfName})  => {
                         `url(${filteredBook.imageLinks['thumbnail']})`
                       }}/>
                   <div className="book-shelf-changer">
-                    <select name="shelf">
+                    <select name="shelf" value={shelf}>
                       <option value="none" disabled>
                         Move to...
                       </option>
-                      {shelf === "currentlyReading" ? <option value="currentlyReading" selected>
+                      <option value="currentlyReading">
                         Currently Reading
-                      </option> : <option value="currentlyReading">
-                        Currently Reading
-                      </option>}
-                      {shelf === "wantToRead" ? <option value="wantToRead" selected>
+                      </option>
+                      <option value="wantToRead">
                         Want to Read
-                      </option> : <option value="wantToRead">
-                        Want to Read
-                      </option>}
-                      {shelf === "read" ? <option value="read" selected>Read</option> : <option value="read">Read</option>}
+                      </option>
+                      <option value="read">Read</option>
                       <option value="none">None</option>
                     </select>
                   </div>
