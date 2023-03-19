@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
-const BookShelf = ({books, shelf, shelfName})  => {
+const BookShelf = ({books, shelf, shelfName, update})  => {
+  console.log(books)
     return (
         <div className="bookshelf">
         <h2 className="bookshelf-title">{shelfName}</h2>
@@ -20,7 +21,7 @@ const BookShelf = ({books, shelf, shelfName})  => {
                         `url(${filteredBook.imageLinks['thumbnail']})`
                       }}/>
                   <div className="book-shelf-changer">
-                    <select name="shelf" value={shelf}>
+                    <select name="shelf" value={shelf} onChange={(event) => update(filteredBook, event)}>
                       <option value="none" disabled>
                         Move to...
                       </option>

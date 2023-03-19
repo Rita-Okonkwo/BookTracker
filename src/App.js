@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import BookShelf from "./BookShelf";
-import { getAll } from "./BooksAPI";
+import { getAll, update } from "./BooksAPI";
 
 const App = () => {
   const [showSearchPage, setShowSearchpage] = useState(false);
@@ -20,6 +20,16 @@ const App = () => {
       ignore = true
     }
   }), [])
+
+  const handleChange = (book, event) => {
+    event.preventDefault()
+    const updateShelf = async () => {
+      await update(book, event.target.value)
+      const res = await getAll()
+      setBooks(res)
+    }
+    updateShelf()
+  }
 
   return (
     <div className="app">
@@ -50,9 +60,9 @@ const App = () => {
           </div>
           <div className="list-books-content">
             <div>
-              <BookShelf books={books} shelf="currentlyReading" shelfName="Currently Reading"/>
-              <BookShelf books={books} shelf="wantToRead" shelfName="Want to Read"/>
-              <BookShelf books={books} shelf="read" shelfName="Read"/>
+              <BookShelf books={books} shelf="currentlyReading" shelfName="Currently Reading" update={handleChange}/>
+              <BookShelf books={books} shelf="wantToRead" shelfName="Want to Read"update={handleChange}/>
+              <BookShelf books={books} shelf="read" shelfName="Read" update={handleChange}/>
             </div>
           </div>
           <div className="open-search">
