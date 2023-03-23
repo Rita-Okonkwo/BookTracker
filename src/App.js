@@ -39,7 +39,7 @@ const App = () => {
   return (
     <div className="app">
       {showSearchPage ? (
-        <BookSearch updateShow={handleClick}/>
+        <BookSearch updateShow={handleClick} update={handleChange}/>
       ) : (
         <div className="list-books">
           <div className="list-books-title">
