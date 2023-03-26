@@ -9,28 +9,33 @@ const App = () => {
   const [books, setBooks] = useState([])
 
   useEffect((() => {
-    let ignore = false
+    let ignore = false;
     const fetchBooks = async () => {
-      const res = await getAll()
+      const res = await getAll();
       if (!ignore) {
-        setBooks(res)
+        setBooks(res);
       }  
     }
-    fetchBooks()
+    fetchBooks();
     return () => {
-      ignore = true
+      ignore = true;
     }
   }), [])
 
+  /**
+  * @description Updates list of books and shelves based on user selection
+  * @param  event - The event from user input
+  * @param book - List of books
+  */
   const handleChange = (book, event) => {
-    event.preventDefault()
+    event.preventDefault();
     const updateShelf = async () => {
-      await update(book, event.target.value)
-      const res = await getAll()
-      setBooks(res)
+      await update(book, event.target.value);
+      const res = await getAll();
+      setBooks(res);
     }
-    updateShelf()
-  }
+    updateShelf();
+  };
 
   return (
     <Routes>

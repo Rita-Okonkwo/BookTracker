@@ -8,23 +8,31 @@ const BookSearch = ({update, books}) => {
   const [query, setQuery] = useState('')
   const [searchedBook, setSearchedBook] = useState([])
 
+  /**
+  * @description Updates the input text and searches for book based on user input
+  * @param  event - The event from user input
+  */
   const handleChange = (event) => {
-    const currentQuery = event.target.value
-    currentQuery === '' ? setSearchedBook([]) : doSearch(currentQuery)
-    setQuery(currentQuery)
-  }
+    const currentQuery = event.target.value;
+    currentQuery === '' ? setSearchedBook([]) : doSearch(currentQuery);
+    setQuery(currentQuery);
+  };
 
+  /**
+  * @description Searches for book based on user input
+  * @param  {string} query - The event value from user input
+  */
   const doSearch = (query) => {
     const find = async () => {
       try {
-        const res = await search(query)
-        setSearchedBook(res)
+        const res = await search(query);
+        setSearchedBook(res);
       } catch (err) {
-        setSearchedBook([])
+        setSearchedBook([]);
       }
     }
-    find()
-  }
+    find();
+  };
   
   return (
     <div className="search-books">
