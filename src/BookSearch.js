@@ -1,15 +1,15 @@
 import { useState } from "react"
 import { search } from "./BooksAPI";
 
-const BookSearch = ({updateShow, update}) => {
+const BookSearch = ({updateShow, update, books}) => {
 
   const [query, setQuery] = useState('')
   const [searchedBook, setSearchedBook] = useState([])
 
   const handleChange = (event) => {
     const currentQuery = event.target.value
-    setQuery(currentQuery)
     currentQuery === '' ? setSearchedBook([]) : doSearch(currentQuery)
+    setQuery(currentQuery)
   }
 
   const doSearch = (query) => {
@@ -45,7 +45,9 @@ const BookSearch = ({updateShow, update}) => {
           <div className="search-books-results">
             <ol className="books-grid">
             {
-              searchedBook.error === undefined && searchedBook.length !== 0 && searchedBook.filter((book) => book.imageLinks !== undefined && book.authors !== undefined ).map((book) =>  (
+              searchedBook.error === undefined && searchedBook.length !== 0 && searchedBook.filter((book) => book.imageLinks !== undefined && book.authors !== undefined ).map((book) =>  { 
+                const bookFound = books.find((findBook) => findBook.id === book.id)
+                return (
                   <li key={book.id}>
                   <div className="book">
                     <div className="book-top">
@@ -57,8 +59,8 @@ const BookSearch = ({updateShow, update}) => {
                         backgroundImage:
                         `url(${book.imageLinks['thumbnail']})`
                       }}/>
-                  <div className="book-shelf-changer">
-                    <select name="shelf" value={book.shelf} onChange={(event) => update(book, event)}>
+                  <div className="book-shelf-changer"> 
+                    <select name="shelf" value={bookFound ? bookFound.shelf : 'none'} onChange={(event) => update(book, event)}>
                       <option value="none" disabled>
                         Move to...
                       </option>
@@ -78,6 +80,7 @@ const BookSearch = ({updateShow, update}) => {
               </div>
               </li>
                 )
+                }
               )
             }
             </ol>
