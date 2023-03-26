@@ -31,6 +31,6 @@ const ListBooks = ({book, shelf, update}) => {
             <div className="book-authors">{book.authors.join()}</div>
             </div>
         </li>
-    )
-}
+    );
+};
 export default ListBooks
