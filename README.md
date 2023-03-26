@@ -2,6 +2,14 @@
 
 A book tracking application built using react. My first project in the Udacity React Nanodegree program
 
+# Things I learned and implemented
+
+- State management using the useState hook
+- Working with side effects using event handlers and the useEffect hook
+- Props destructuring
+- Routing
+- Typechecking of props using PropTypes
+
 ## Available Scripts
 
 In the project directory, you can run this command to install the project dependencies:
