@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import ListBooks from './ListBooks'
 
 const BookShelf = ({books, shelf, shelfName, update})  => {
-  console.log(books)
     return (
         <div className="bookshelf">
         <h2 className="bookshelf-title">{shelfName}</h2>
