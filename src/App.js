@@ -1,11 +1,11 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import BookShelf from "./BookShelf";
 import { getAll, update } from "./BooksAPI";
 import BookSearch from "./BookSearch";
+import { Routes, Route } from "react-router-dom"
+import Books from "./Books";
 
 const App = () => {
-  const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([])
 
   useEffect((() => {
@@ -32,32 +32,11 @@ const App = () => {
     updateShelf()
   }
 
-  const handleClick = () => {
-    setShowSearchpage(!showSearchPage)
-  }
-
   return (
-    <div className="app">
-      {showSearchPage ? (
-        <BookSearch updateShow={handleClick} update={handleChange} books={books}/>
-      ) : (
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-          <div className="list-books-content">
-            <div>
-              <BookShelf books={books} shelf="currentlyReading" shelfName="Currently Reading" update={handleChange}/>
-              <BookShelf books={books} shelf="wantToRead" shelfName="Want to Read"update={handleChange}/>
-              <BookShelf books={books} shelf="read" shelfName="Read" update={handleChange}/>
-            </div>
-          </div>
-          <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-          </div>
-        </div>
-      )}
-    </div>
+    <Routes>
+      <Route exact path="/" element={<Books books={books} handleChange={handleChange}/>}/>
+      <Route path="/search" element={<BookSearch update={handleChange} books={books}/>}/>
+    </Routes>
   );
 }
 

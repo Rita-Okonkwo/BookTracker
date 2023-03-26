@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 import { search } from "./BooksAPI";
 import ListBooks from "./ListBooks";
 
-const BookSearch = ({updateShow, update, books}) => {
+const BookSearch = ({update, books}) => {
 
   const [query, setQuery] = useState('')
   const [searchedBook, setSearchedBook] = useState([])
@@ -28,12 +29,12 @@ const BookSearch = ({updateShow, update, books}) => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a
+        <Link
           className="close-search"
-          onClick={updateShow}
+          to="/"
         >
           Close
-        </a>
+        </Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"
